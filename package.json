@@ -1,0 +1,17 @@
+{
+  "name": "juzerzarif.github.io",
+  "version": "1.0.0",
+  "description": "Personal website for Juzer Zarif",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juzerzarif/juzerzarif.github.io.git"
+  },
+  "author": "juzerzarif",
+  "bugs": {
+    "url": "https://github.com/juzerzarif/juzerzarif.github.io/issues"
+  },
+  "homepage": "https://github.com/juzerzarif/juzerzarif.github.io#readme"
+}
