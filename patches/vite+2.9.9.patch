@@ -1,0 +1,15 @@
+diff --git a/node_modules/vite/client.d.ts b/node_modules/vite/client.d.ts
+index aaac1ea..b9e1653 100644
+--- a/node_modules/vite/client.d.ts
++++ b/node_modules/vite/client.d.ts
+@@ -84,7 +84,9 @@ declare module '*.gif' {
+   export default src
+ }
+ declare module '*.svg' {
+-  const src: string
++  import { SvelteComponent } from 'svelte';
++
++  const src: typeof SvelteComponent
+   export default src
+ }
+ declare module '*.ico' {

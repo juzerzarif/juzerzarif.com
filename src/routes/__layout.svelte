@@ -1,38 +1,70 @@
 <script lang="ts">
+	import DarkModeSvg from '@material-design-icons/svg/filled/nightlight.svg';
+	import LightModeSvg from '@material-design-icons/svg/filled/light_mode.svg';
+
+	import Switch from '$lib/components/switch';
+	import { getCurrentColorScheme } from '$lib/stores/color-scheme';
 	import { page } from '$app/stores';
 
 	import '../app.css';
 
-	const getUnixPath = (path: string) => `pcuser@Juzer-Zarif : ~${path}`.replace(/\/$/, '');
+	const colorScheme = getCurrentColorScheme();
+
+	const getUnixPath = (path: string) => `root@Juzer-Zarif : ~${path}`.replace(/\/$/, '');
+
+	const handleDarkModeToggle = (event: CustomEvent<boolean>) => {
+		const isDarkMode = event.detail;
+		$colorScheme = isDarkMode ? 'dark' : 'light';
+	};
 </script>
 
-<div class="hero-bg flex h-full w-full flex-col overflow-scroll">
-	<!-- Title bar -->
+<div data-site-root class="h-full w-full" class:dark={$colorScheme === 'dark'}>
 	<div
-		class="relative inline-flex h-8 items-center border-b-[1px] border-b-stone-400 bg-neutral-100 px-3 py-2 shadow-md shadow-neutral-200/50 dark:border-b-stone-900 dark:bg-neutral-800 dark:shadow-zinc-900/50"
+		class="flex h-full w-full flex-col overflow-scroll bg-lgray-300 text-dgray-800 dark:bg-dgray-800 dark:text-lgray-200"
 	>
-		<div class="absolute inline-flex h-4 items-center">
-			<div class="mr-2 aspect-square w-3 rounded-full bg-red-500" />
-			<div class="mr-2 aspect-square w-3 rounded-full bg-yellow-500" />
-			<div class="aspect-square w-3 rounded-full bg-green-500" />
-		</div>
-		<span
-			aria-hidden="true"
-			class="window-title mx-20 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-center text-sm font-semibold opacity-70 dark:opacity-60 md:mx-32"
+		<!-- Title bar -->
+		<div
+			class="relative inline-flex h-8 items-center border-b border-b-lgray-400 bg-lgray-300 px-3 py-2 shadow-md shadow-lgray-400/30 dark:border-b-dgray-900 dark:bg-dgray-800 dark:shadow-dgray-900/50"
 		>
-			{getUnixPath($page.url.pathname)}
-			<!-- This is so the unix path is rendered ltr even when the direction is set to rtl -->
-			<span aria-hidden="true" class="invisible">l</span>
-		</span>
-	</div>
+			<div class="absolute inline-flex h-4 items-center">
+				<div class="mr-2 aspect-square w-3 rounded-full bg-red-600/80 dark:bg-red-600" />
+				<div class="mr-2 aspect-square w-3 rounded-full bg-yellow-600/80 dark:bg-yellow-600" />
+				<div class="aspect-square w-3 rounded-full bg-green-600/80 dark:bg-green-600" />
+			</div>
+			<span
+				class="mx-20 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-center text-sm font-semibold opacity-70 dark:opacity-60 md:mx-32"
+				style:direction="rtl"
+				aria-hidden="true"
+			>
+				{getUnixPath($page.url.pathname)}
+				<!-- This is so the unix path is rendered ltr even when the direction is set to rtl -->
+				<span aria-hidden="true" class="invisible">l</span>
+			</span>
+			<Switch
+				class="dark-mode-switch"
+				type="button"
+				aria-label="Toggle color scheme"
+				value={$colorScheme === 'dark'}
+				on:change={handleDarkModeToggle}
+			>
+				<DarkModeSvg class="h-[80%] -rotate-12 fill-sky-400" />
+				<LightModeSvg class="ml-auto h-[90%] fill-yellow-600" />
+			</Switch>
+		</div>
 
-	<div class="flex-grow overflow-scroll">
-		<slot />
+		<!-- Scroll container -->
+		<div class="flex-grow overflow-scroll">
+			<slot />
+		</div>
 	</div>
 </div>
 
-<style>
-	.window-title {
-		direction: rtl;
+<style lang="postcss" global>
+	.dark-mode-switch {
+		@apply absolute right-3 dark:border-dgray-300;
+
+		[data-switch-track] {
+			@apply bg-transparent;
+		}
 	}
 </style>
