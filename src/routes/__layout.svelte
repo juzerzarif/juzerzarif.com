@@ -20,19 +20,19 @@
 
 <div data-site-root class="h-full w-full" class:dark={$colorScheme === 'dark'}>
 	<div
-		class="flex h-full w-full flex-col overflow-scroll bg-lgray-300 text-dgray-800 dark:bg-dgray-800 dark:text-lgray-200"
+		class="flex h-full w-full flex-col overflow-scroll bg-terminalLt-bg text-terminalLt-fg dark:bg-terminalDk-bg dark:text-terminalDk-fg"
 	>
 		<!-- Title bar -->
 		<div
-			class="relative inline-flex h-8 items-center border-b border-b-lgray-400 bg-lgray-300 px-3 py-2 shadow-md shadow-lgray-400/30 dark:border-b-dgray-900 dark:bg-dgray-800 dark:shadow-dgray-900/50"
+			class="relative inline-flex h-8 items-center border-b border-b-[#C6C5C5] bg-[#F2F1F1] px-3 py-2 text-[#484848] shadow-md dark:border-b-black dark:bg-[#333232] dark:text-[#ADADAD] dark:shadow-lg"
 		>
 			<div class="absolute inline-flex h-4 items-center">
-				<div class="mr-2 aspect-square w-3 rounded-full bg-red-600/80 dark:bg-red-600" />
-				<div class="mr-2 aspect-square w-3 rounded-full bg-yellow-600/80 dark:bg-yellow-600" />
-				<div class="aspect-square w-3 rounded-full bg-green-600/80 dark:bg-green-600" />
+				<div class="mr-2 aspect-square w-3 rounded-full bg-[#FF5F57]" />
+				<div class="mr-2 aspect-square w-3 rounded-full bg-[#FEBC2E]" />
+				<div class="aspect-square w-3 rounded-full bg-[#28C840]" />
 			</div>
 			<span
-				class="mx-20 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-center text-sm font-semibold opacity-70 dark:opacity-60 md:mx-32"
+				class="mx-20 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-center text-sm font-semibold md:mx-32"
 				style:direction="rtl"
 				aria-hidden="true"
 			>
@@ -61,7 +61,7 @@
 
 <style lang="postcss" global>
 	.dark-mode-switch {
-		@apply absolute right-3 dark:border-dgray-300;
+		@apply absolute right-3 dark:border-terminalDk-fg;
 
 		[data-switch-track] {
 			@apply bg-transparent;

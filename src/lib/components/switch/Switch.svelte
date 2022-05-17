@@ -18,8 +18,8 @@
 	{...$$restProps}
 	class={cx(
 		$$restProps.class,
-		'flex overflow-hidden rounded-full border border-lgray-700 border-opacity-60 dark:border-dgray-700',
-		'focus-visible:outline-0 focus-visible:ring-4 focus-visible:ring-lgray-400/60'
+		'flex overflow-hidden rounded-full border border-terminalLt-fg border-opacity-60 dark:border-terminalDk-black',
+		'focus-visible:outline-0 focus-visible:ring-2 focus-visible:ring-blue-300'
 	)}
 	type="button"
 	aria-pressed={value}
@@ -27,8 +27,10 @@
 >
 	<div
 		class={cx(
-			'transi h-5 w-10 bg-opacity-60 p-0.5 transition-colors',
-			value ? 'bg-green-400 dark:bg-green-600' : 'bg-lgray-300 dark:bg-dgray-300'
+			'transi h-5 w-10 p-0.5 transition-colors',
+			value
+				? 'bg-terminalLt-green dark:bg-terminalDk-green/60'
+				: 'bg-terminalLt-black/20 dark:bg-terminalDk-white/60'
 		)}
 		aria-hidden="true"
 		data-switch-track
@@ -36,7 +38,7 @@
 		<div class="relative flex h-full w-full items-center">
 			<span
 				class={cx(
-					'absolute z-10 aspect-square h-full rounded-full border border-lgray-700 border-opacity-60 bg-lgray-200 drop-shadow transition-all motion-reduce:transition-none dark:border-dgray-700 dark:bg-dgray-100',
+					'absolute z-10 aspect-square h-full rounded-full border border-terminalLt-black/60 bg-terminalLt-white drop-shadow transition-all motion-reduce:transition-none dark:border-terminalDk-black/70 dark:bg-terminalDk-white',
 					value ? 'left-full -translate-x-full' : 'left-0'
 				)}
 				data-switch-thumb
