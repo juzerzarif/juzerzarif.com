@@ -20,7 +20,7 @@
 
 <div data-site-root class="h-full w-full" class:dark={$colorScheme === 'dark'}>
 	<div
-		class="flex h-full w-full flex-col overflow-scroll bg-terminalLt-bg text-terminalLt-fg dark:bg-terminalDk-bg dark:text-terminalDk-fg"
+		class="flex h-full w-full flex-col bg-terminalLt-bg text-terminalLt-fg dark:bg-terminalDk-bg dark:text-terminalDk-fg"
 	>
 		<!-- Title bar -->
 		<div
@@ -53,7 +53,7 @@
 		</div>
 
 		<!-- Scroll container -->
-		<div class="flex-grow overflow-scroll">
+		<div class="flex-grow overflow-auto">
 			<slot />
 		</div>
 	</div>

@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
 	content: ['./src/**/*.{html,js,ts,svelte}'],
@@ -16,7 +18,8 @@ module.exports = {
 					blue: '#268BD2',
 					magenta: '#D33682',
 					cyan: '#2AA198',
-					white: '#EEE8D5'
+					white: '#EEE8D5',
+					cursor: '#657B83'
 				},
 				terminalDk: {
 					// Molokai
@@ -29,8 +32,12 @@ module.exports = {
 					blue: '#0094D9',
 					magenta: '#9B37FF',
 					cyan: '#51B7D9',
-					white: '#C7C7C7'
+					white: '#C7C7C7',
+					cursor: '#C7C7C7'
 				}
+			},
+			fontFamily: {
+				mono: ['Roboto Mono', ...defaultTheme.fontFamily.mono]
 			}
 		}
 	},
