@@ -65,7 +65,7 @@
 	}
 	.intro-text::after {
 		content: '\00a0';
-		@apply absolute -bottom-0.5 inline-block scale-y-110 bg-terminalLt-cursor text-terminalLt-cursor dark:bg-terminalDk-cursor dark:text-terminalDk-cursor;
+		@apply absolute -bottom-0.5 inline-block scale-y-110 bg-terminal-cursor text-terminal-cursor;
 	}
 
 	@keyframes blink2 {

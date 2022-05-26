@@ -7,8 +7,10 @@
 	import { page } from '$app/stores';
 
 	import '../app.css';
+	import { getSiteColorVars } from '$lib/color-scheme';
 
 	const colorScheme = getCurrentColorScheme();
+	$: siteColors = getSiteColorVars($colorScheme);
 
 	const getUnixPath = (path: string) => `root@Juzer-Zarif : ~${path}`.replace(/\/$/, '');
 
@@ -18,13 +20,11 @@
 	};
 </script>
 
-<div data-site-root class="h-full w-full" class:dark={$colorScheme === 'dark'}>
-	<div
-		class="flex h-full w-full flex-col bg-terminalLt-bg text-terminalLt-fg dark:bg-terminalDk-bg dark:text-terminalDk-fg"
-	>
+<div data-site-root class="h-full w-full" class:dark={$colorScheme === 'dark'} style={siteColors}>
+	<div class="flex h-full w-full flex-col bg-terminal-bg text-terminal-fg">
 		<!-- Title bar -->
 		<div
-			class="relative inline-flex h-8 items-center border-b border-b-[#C6C5C5] bg-[#F2F1F1] px-3 py-2 text-[#484848] shadow-md dark:border-b-black dark:bg-[#333232] dark:text-[#ADADAD] dark:shadow-lg"
+			class="relative inline-flex h-8 items-center border-b border-b-system-bg bg-system-toolbar px-3 py-2 text-system-fg shadow-md dark:shadow-lg"
 		>
 			<div class="absolute inline-flex h-4 items-center">
 				<div class="mr-2 aspect-square w-3 rounded-full bg-[#FF5F57]" />
@@ -32,7 +32,7 @@
 				<div class="aspect-square w-3 rounded-full bg-[#28C840]" />
 			</div>
 			<span
-				class="mx-20 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-center text-sm font-semibold md:mx-32"
+				class="mx-20 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-center text-sm font-semibold opacity-70 md:mx-32"
 				style:direction="rtl"
 				aria-hidden="true"
 			>
@@ -61,7 +61,7 @@
 
 <style lang="postcss" global>
 	.dark-mode-switch {
-		@apply absolute right-3 dark:border-terminalDk-fg;
+		@apply absolute right-3 dark:border-terminal-fg;
 
 		[data-switch-track] {
 			@apply bg-transparent;

@@ -1,40 +1,41 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+function buildColorDict(colorVars) {
+	return Object.fromEntries(
+		Object.entries(colorVars).map(([colorName, varName]) => [
+			colorName,
+			({ opacityValue }) =>
+				opacityValue === undefined
+					? `rgb(var(${varName}))`
+					: `rgb(var(${varName}) / ${opacityValue})`
+		])
+	);
+}
+
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
 	content: ['./src/**/*.{html,js,ts,svelte}'],
 	theme: {
 		extend: {
 			colors: {
-				// Terminal color schemes
-				terminalLt: {
-					// Solarized Light
-					fg: '#657B83',
-					bg: '#FDF6E3',
-					black: '#073642',
-					red: '#DC322F',
-					green: '#859900',
-					yellow: '#B58900',
-					blue: '#268BD2',
-					magenta: '#D33682',
-					cyan: '#2AA198',
-					white: '#EEE8D5',
-					cursor: '#657B83'
-				},
-				terminalDk: {
-					// Molokai
-					fg: '#C7C7C7',
-					bg: '#171717',
-					black: '#171717',
-					red: '#FE4386',
-					green: '#A6E32C',
-					yellow: '#E6DA73',
-					blue: '#0094D9',
-					magenta: '#9B37FF',
-					cyan: '#51B7D9',
-					white: '#C7C7C7',
-					cursor: '#C7C7C7'
-				}
+				terminal: buildColorDict({
+					fg: '--terminal-fg',
+					bg: '--terminal-bg',
+					black: '--terminal-black',
+					red: '--terminal-red',
+					green: '--terminal-green',
+					yellow: '--terminal-yellow',
+					blue: '--terminal-blue',
+					magenta: '--terminal-magenta',
+					cyan: '--terminal-cyan',
+					white: '--terminal-white',
+					cursor: '--terminal-cursor'
+				}),
+				system: buildColorDict({
+					fg: '--system-fg',
+					bg: '--system-bg',
+					toolbar: '--system-toolbar'
+				})
 			},
 			fontFamily: {
 				mono: ['Roboto Mono', ...defaultTheme.fontFamily.mono]

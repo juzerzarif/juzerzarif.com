@@ -18,7 +18,7 @@
 	{...$$restProps}
 	class={cx(
 		$$restProps.class,
-		'flex overflow-hidden rounded-full border border-terminalLt-fg border-opacity-60 dark:border-terminalDk-black',
+		'flex overflow-hidden rounded-full border border-terminal-fg border-opacity-60 dark:border-terminal-black',
 		'focus-visible:outline-0 focus-visible:ring-2 focus-visible:ring-blue-300'
 	)}
 	type="button"
@@ -29,8 +29,8 @@
 		class={cx(
 			'transi h-5 w-10 p-0.5 transition-colors',
 			value
-				? 'bg-terminalLt-green dark:bg-terminalDk-green/60'
-				: 'bg-terminalLt-black/20 dark:bg-terminalDk-white/60'
+				? 'bg-terminal-green dark:bg-terminal-green/60'
+				: 'bg-terminal-black/20 dark:bg-terminal-white/60'
 		)}
 		aria-hidden="true"
 		data-switch-track
@@ -38,7 +38,7 @@
 		<div class="relative flex h-full w-full items-center">
 			<span
 				class={cx(
-					'absolute z-10 aspect-square h-full rounded-full border border-terminalLt-black/60 bg-terminalLt-white drop-shadow transition-all motion-reduce:transition-none dark:border-terminalDk-black/70 dark:bg-terminalDk-white',
+					'absolute z-10 aspect-square h-full rounded-full border border-terminal-black/60 bg-terminal-white drop-shadow transition-all motion-reduce:transition-none',
 					value ? 'left-full -translate-x-full' : 'left-0'
 				)}
 				data-switch-thumb
