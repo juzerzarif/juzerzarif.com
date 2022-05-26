@@ -1,10 +1,10 @@
 import type { GetSession } from '@sveltejs/kit';
 
-import { getUserColorScheme } from './getUserColorScheme';
+import { getColorSchemeConfig } from '$lib/color-scheme';
 
 const getSession: GetSession = (event) => {
 	return {
-		colorScheme: getUserColorScheme(event)
+		colorSchemeConfig: getColorSchemeConfig(event)
 	};
 };
 

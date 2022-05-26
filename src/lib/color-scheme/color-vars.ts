@@ -3,7 +3,7 @@ import {
 	SYSTEM_LIGHT_COLORS,
 	TERMINAL_DARK_COLORS,
 	TERMINAL_LIGHT_COLORS
-} from './colors';
+} from './constants';
 
 function buildCssVars(prefix: string, colors: Record<string, string>) {
 	return Object.fromEntries(

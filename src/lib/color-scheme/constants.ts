@@ -1,3 +1,5 @@
+export const COLOR_CONFIG_COOKIE_KEY = 'color-scheme-config';
+
 export const TERMINAL_LIGHT_COLORS = {
 	// Solarized Light
 	bg: '253 246 227',
@@ -29,13 +31,15 @@ export const TERMINAL_DARK_COLORS = {
 };
 
 export const SYSTEM_LIGHT_COLORS = {
-	bg: '246 246 246',
 	fg: '76 76 76',
-	toolbar: '252 252 252'
+	bg: '246 246 246',
+	toolbar: '252 252 252',
+	border: '248 248 248'
 };
 
 export const SYSTEM_DARK_COLORS = {
-	bg: '30 30 30',
 	fg: '234 234 234',
-	toolbar: '54 54 54'
+	bg: '30 30 30',
+	toolbar: '54 54 54',
+	border: '71 71 71'
 };

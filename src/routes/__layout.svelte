@@ -3,11 +3,10 @@
 	import LightModeSvg from '@material-design-icons/svg/filled/light_mode.svg';
 
 	import Switch from '$lib/components/switch';
-	import { getCurrentColorScheme } from '$lib/stores/color-scheme';
+	import { getCurrentColorScheme, getSiteColorVars } from '$lib/color-scheme';
 	import { page } from '$app/stores';
 
 	import '../app.css';
-	import { getSiteColorVars } from '$lib/color-scheme';
 
 	const colorScheme = getCurrentColorScheme();
 	$: siteColors = getSiteColorVars($colorScheme);
