@@ -1,22 +1,33 @@
 import { derived, get, writable, type Writable } from 'svelte/store';
-import { onMount } from 'svelte';
 import { serialize as serializeCookie } from 'cookie';
 
 import { session } from '$app/stores';
 
 import { COLOR_CONFIG_COOKIE_KEY } from './constants';
 
-export function getCurrentColorScheme(): Writable<App.ColorScheme> {
-	const { colorSchemeConfig } = get(session);
-	const configStore = writable<App.ColorSchemeConfig>(colorSchemeConfig);
-	const schemeStore = derived(configStore, ($config) => $config.user || $config.system);
+const colorSchemeConfig = {
+	session: '',
+	store: null as unknown as Writable<App.ColorSchemeConfig>
+};
+
+export function getCurrentColorScheme() {
+	const { colorSchemeConfig: sessionColorScheme, id: sessionId } = get(session);
+	/**
+	 * Recreate store on a new session. The server will see a new session id for each request and the
+	 * client will only ever see one session id.
+	 */
+	const isSessionInitialized = colorSchemeConfig.session === sessionId;
+	if (!isSessionInitialized) {
+		colorSchemeConfig.session = sessionId;
+		colorSchemeConfig.store = writable(sessionColorScheme);
+	}
 
 	const updateConfigStore = (newConfig: Partial<App.ColorSchemeConfig>) => {
-		configStore.update((prevConfig) => ({ ...prevConfig, ...newConfig }));
+		colorSchemeConfig.store.update((prevConfig) => ({ ...prevConfig, ...newConfig }));
 	};
 
-	onMount(() => {
-		const configStoreUnsubscribe = configStore.subscribe((config) => {
+	if (typeof document !== 'undefined' && !isSessionInitialized) {
+		colorSchemeConfig.store.subscribe((config) => {
 			document.cookie = serializeCookie(COLOR_CONFIG_COOKIE_KEY, JSON.stringify(config), {
 				expires: new Date(Date.now() + 8640000000) // expire in a 100 days from now
 			});
@@ -24,21 +35,18 @@ export function getCurrentColorScheme(): Writable<App.ColorScheme> {
 
 		const handleDarkMode = (query: MediaQueryList | MediaQueryListEvent) => {
 			const colorScheme = query.matches ? 'dark' : 'light';
-			configStore.update((prevConfig) => ({ ...prevConfig, system: colorScheme }));
+			updateConfigStore({ system: colorScheme });
 		};
 		const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
 		handleDarkMode(darkModeQuery);
 		darkModeQuery.addEventListener('change', handleDarkMode);
-
-		return () => {
-			configStoreUnsubscribe();
-			darkModeQuery.removeEventListener('change', handleDarkMode);
-		};
-	});
+	}
 
 	return {
-		...schemeStore,
-		set: (userScheme) => updateConfigStore({ user: userScheme }),
-		update: (updater) => updateConfigStore({ user: updater(get(schemeStore)) })
+		colorScheme: derived(colorSchemeConfig.store, (config) => config.user || config.system),
+		userSelection: {
+			...derived(colorSchemeConfig.store, (config) => config.user),
+			set: (scheme?: App.ColorScheme) => updateConfigStore({ user: scheme })
+		} as Writable<App.ColorScheme | undefined>
 	};
 }

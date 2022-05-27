@@ -8,14 +8,14 @@
 
 	import '../app.css';
 
-	const colorScheme = getCurrentColorScheme();
+	const { colorScheme, userSelection } = getCurrentColorScheme();
 	$: siteColors = getSiteColorVars($colorScheme);
 
 	const getUnixPath = (path: string) => `root@Juzer-Zarif : ~${path}`.replace(/\/$/, '');
 
 	const handleDarkModeToggle = (event: CustomEvent<boolean>) => {
 		const isDarkMode = event.detail;
-		$colorScheme = isDarkMode ? 'dark' : 'light';
+		$userSelection = isDarkMode ? 'dark' : 'light';
 	};
 </script>
 
