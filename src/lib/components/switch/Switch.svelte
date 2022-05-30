@@ -35,7 +35,7 @@
 		aria-hidden="true"
 		data-switch-track
 	>
-		<div class="relative flex h-full w-full items-center">
+		<div class="relative z-0 flex h-full w-full items-center">
 			<span
 				class={cx(
 					'absolute z-10 aspect-square h-full rounded-full border border-terminal-black/60 bg-terminal-white drop-shadow transition-all motion-reduce:transition-none',

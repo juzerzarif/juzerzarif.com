@@ -40,8 +40,10 @@
 	"type": "module",
 	"dependencies": {
 		"@material-design-icons/svg": "^0.10.11",
+		"animate.css": "^4.1.1",
 		"clsx": "^1.1.1",
 		"cookie": "^0.5.0",
+		"focus-trap": "^6.9.3",
 		"nanoid": "^3.3.4",
 		"typed.js": "^2.0.12"
 	}
