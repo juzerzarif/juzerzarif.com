@@ -1,22 +1,22 @@
 <script lang="ts">
-	import DarkModeSvg from '@material-design-icons/svg/filled/nightlight.svg';
-	import LightModeSvg from '@material-design-icons/svg/filled/light_mode.svg';
+	import SettingsSvg from '@material-design-icons/svg/filled/settings.svg';
 
-	import Switch from '$lib/components/switch';
+	import Modal from '$lib/components/modal';
+	import Settings from '$lib/modules/settings';
 	import { getCurrentColorScheme, getSiteColorVars } from '$lib/color-scheme';
 	import { page } from '$app/stores';
 	import { WindowActionButtons } from '$lib/components/system';
 
 	import '../app.css';
 
-	const { colorScheme, userSelection } = getCurrentColorScheme();
+	const { colorScheme } = getCurrentColorScheme();
 	$: siteColors = getSiteColorVars($colorScheme);
 
 	const getUnixPath = (path: string) => `root@Juzer-Zarif : ~${path}`.replace(/\/$/, '');
 
-	const handleDarkModeToggle = (event: CustomEvent<boolean>) => {
-		const isDarkMode = event.detail;
-		$userSelection = isDarkMode ? 'dark' : 'light';
+	let settingsModalOpen = false;
+	const handleSettingsToggle = () => {
+		settingsModalOpen = !settingsModalOpen;
 	};
 </script>
 
@@ -36,16 +36,13 @@
 				<!-- This is so the unix path is rendered ltr even when the direction is set to rtl -->
 				<span aria-hidden="true" class="invisible">l</span>
 			</span>
-			<Switch
-				class="dark-mode-switch"
-				type="button"
-				aria-label="Toggle color scheme"
-				value={$colorScheme === 'dark'}
-				on:change={handleDarkModeToggle}
+			<button
+				class="absolute right-1.5 aspect-square h-full px-1 drop-shadow-xl"
+				on:click={handleSettingsToggle}
+				aria-label="Preferences"
 			>
-				<DarkModeSvg class="h-[80%] -rotate-12 fill-sky-400" />
-				<LightModeSvg class="ml-auto h-[90%] fill-yellow-600" />
-			</Switch>
+				<SettingsSvg class="fill-system-fg/80" />
+			</button>
 		</div>
 
 		<!-- Scroll container -->
@@ -53,6 +50,7 @@
 			<slot />
 		</div>
 	</div>
+	<Modal open={settingsModalOpen}><Settings on:close={handleSettingsToggle} /></Modal>
 </div>
 
 <style lang="postcss" global>

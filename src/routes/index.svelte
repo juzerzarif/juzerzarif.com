@@ -49,8 +49,8 @@
 
 		<p
 			class={cx(
-				'mt-12 text-center font-mono text-lg md:text-2xl',
-				!showContentText ? 'opacity-0' : 'opacity-100 transition-opacity'
+				'mt-12 text-center font-mono text-lg transition-opacity md:text-2xl',
+				!showContentText ? 'opacity-0' : 'opacity-100'
 			)}
 		>
 			And this is my website. I am a web developer trying to learn how to make great software on the
