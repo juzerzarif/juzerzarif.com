@@ -8,10 +8,10 @@
 	let showContentText = false;
 
 	onMount(() => {
-		const START_DELAY = 3000;
+		const START_DELAY = 1000;
 		const typed = new Typed(introEl, {
-			strings: ['Hi, my name is Juzer ^1000 `👋`'],
-			typeSpeed: 70,
+			strings: ['Hi, my name is Juzer ^500 `👋`'],
+			typeSpeed: 50,
 			startDelay: START_DELAY,
 			showCursor: false,
 			onComplete() {
