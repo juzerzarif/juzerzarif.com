@@ -5,6 +5,7 @@
 	import Switch from '$lib/components/switch';
 	import { getCurrentColorScheme, getSiteColorVars } from '$lib/color-scheme';
 	import { page } from '$app/stores';
+	import { WindowActionButtons } from '$lib/components/system';
 
 	import '../app.css';
 
@@ -25,11 +26,7 @@
 		<div
 			class="relative inline-flex h-8 items-center border-b border-b-system-bg bg-system-toolbar px-3 py-2 text-system-fg shadow-md dark:shadow-lg"
 		>
-			<div class="absolute inline-flex h-4 items-center">
-				<div class="mr-2 aspect-square w-3 rounded-full bg-[#FF5F57]" />
-				<div class="mr-2 aspect-square w-3 rounded-full bg-[#FEBC2E]" />
-				<div class="aspect-square w-3 rounded-full bg-[#28C840]" />
-			</div>
+			<WindowActionButtons class="absolute" />
 			<span
 				class="mx-20 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-center text-sm font-semibold opacity-70 md:mx-32"
 				style:direction="rtl"

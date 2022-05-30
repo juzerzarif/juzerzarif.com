@@ -7,3 +7,14 @@ body {
 	width: 100%;
 	height: 100%;
 }
+
+*:focus-visible {
+	@apply outline-none outline-0 ring ring-blue-300;
+}
+
+button:active {
+	opacity: 0.7;
+}
+button[disabled]:active {
+	opacity: 1;
+}
