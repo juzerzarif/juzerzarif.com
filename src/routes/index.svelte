@@ -33,7 +33,7 @@
 </script>
 
 <div class="flex min-h-full justify-center">
-	<div class="container flex flex-col items-center py-10 px-4">
+	<div class="container flex flex-col items-center py-10 px-10">
 		<h1 class="sr-only">Hi, my name is Juzer 👋</h1>
 		<!-- svelte-ignore a11y-hidden -->
 		<!-- svelte-ignore a11y-missing-content -->
@@ -42,20 +42,31 @@
 			class={cx(
 				'intro-text',
 				!isTyping && 'cursor-blink',
-				'relative text-center font-mono text-4xl font-bold md:text-5xl lg:text-6xl'
+				'relative mb-12 text-center font-mono text-4xl font-bold md:text-5xl lg:text-6xl'
 			)}
 			bind:this={introEl}
 		/>
-
-		<p
-			class={cx(
-				'mt-12 text-center font-mono text-lg transition-opacity md:text-2xl',
-				!showContentText ? 'opacity-0' : 'opacity-100'
-			)}
-		>
-			And this is my website. I am a web developer trying to learn how to make great software on the
-			web for all people.
-		</p>
+		<div class="grid grid-cols-12 gap-6">
+			<img
+				class={cx(
+					'col-span-12 max-h-[50vh] justify-self-center rounded-lg transition-opacity lg:col-span-4 lg:rounded-full xl:col-span-3',
+					showContentText ? 'opacity-100' : 'opacity-0'
+				)}
+				src="images/juzer-seattle.webp"
+				alt="Juzer smiling with the city of Seattle in the background"
+			/>
+			<p
+				class={cx(
+					'text-md col-span-12 self-center text-justify font-mono transition-opacity md:text-2xl lg:col-span-8 xl:col-span-9',
+					!showContentText ? 'opacity-0' : 'opacity-100'
+				)}
+			>
+				Welcome to my website. I am a software engineer trying to learn how to make great software
+				for all people. In my free time I like to bake and cook, mess with audio equipment,
+				mechanical keyboards, and hobby electronics. If you'd like to say hi, feel free to reach out
+				to me using any of the media listed here. Have fun!
+			</p>
+		</div>
 	</div>
 </div>
 
