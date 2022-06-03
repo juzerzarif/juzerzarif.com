@@ -1,6 +1,8 @@
 <script lang="ts">
 	import cx from 'clsx';
 
+	import MediaLinks from './components/MediaLinks.svelte';
+	import Section from './components/Section.svelte';
 	import TypedGreeting from './components/TypedGreeting.svelte';
 
 	let showContent = false;
@@ -22,12 +24,22 @@
 		/>
 		<TypedGreeting on:typing-complete={handleTypingComplete} />
 		<div class={cx('transition-opacity', showContent ? 'opacity-100' : 'opacity-0')}>
-			<p class={cx('text-md self-center text-justify font-mono md:text-xl lg:text-2xl')}>
+			<p
+				class={cx(
+					'text-md mb-24 self-center text-justify font-mono md:mb-48 md:text-xl lg:text-2xl'
+				)}
+			>
 				Welcome to my website. I am a software engineer trying to learn how to make great software
 				for all people. In my free time I like to bake and cook, mess with audio equipment,
 				mechanical keyboards, and hobby electronics. If you'd like to say hi, feel free to reach out
 				to me using any of the media listed here. Have fun!
 			</p>
+
+			<Section title="Get in touch">
+				<div class="mt-12 flex flex-col gap-12">
+					<MediaLinks />
+				</div>
+			</Section>
 		</div>
 	</div>
 </div>
