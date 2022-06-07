@@ -12,6 +12,8 @@
 	const { colorScheme } = getCurrentColorScheme();
 	$: siteColors = getSiteColorVars($colorScheme);
 
+	const currentYear = new Date().getFullYear();
+
 	const getUnixPath = (path: string) => `root@Juzer-Zarif : ~${path}`.replace(/\/$/, '');
 
 	let settingsModalOpen = false;
@@ -21,7 +23,7 @@
 </script>
 
 <div data-site-root class="h-full w-full" class:dark={$colorScheme === 'dark'} style={siteColors}>
-	<div class="flex h-full w-full flex-col bg-terminal-bg text-terminal-fg">
+	<div class="flex h-full w-full flex-col">
 		<!-- Title bar -->
 		<div
 			class="relative inline-flex h-8 items-center border-b border-b-system-bg bg-system-toolbar px-3 py-2 text-system-fg shadow-md dark:shadow-lg"
@@ -46,8 +48,11 @@
 		</div>
 
 		<!-- Scroll container -->
-		<div class="flex-grow overflow-auto">
+		<div class="flex-grow overflow-auto bg-terminal-bg font-mono text-terminal-fg">
 			<slot />
+			<footer class="mt-8 p-4 text-center text-xs text-terminal-fg/80 md:text-sm">
+				Copyright &copy; {currentYear} Juzer Zarif. All rights reserved.
+			</footer>
 		</div>
 	</div>
 	<Modal open={settingsModalOpen}><Settings on:close={handleSettingsToggle} /></Modal>
