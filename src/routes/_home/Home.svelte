@@ -1,6 +1,7 @@
 <script lang="ts">
 	import cx from 'clsx';
 
+	import ContactForm from './components/ContactForm.svelte';
 	import MediaLinks from './components/MediaLinks.svelte';
 	import Section from './components/Section.svelte';
 	import TypedGreeting from './components/TypedGreeting.svelte';
@@ -14,7 +15,7 @@
 </script>
 
 <div class="flex min-h-full justify-center">
-	<div class="container flex flex-col items-center py-10 px-10">
+	<div class="container flex flex-col items-center py-10 px-6 sm:px-10">
 		<img
 			class="mb-8 h-[30vh] rounded-full transition-all md:min-h-[20rem]"
 			class:opacity-0={!showContent}
@@ -24,11 +25,7 @@
 		/>
 		<TypedGreeting on:typing-complete={handleTypingComplete} />
 		<div class={cx('transition-opacity', showContent ? 'opacity-100' : 'opacity-0')}>
-			<p
-				class={cx(
-					'text-md mb-24 self-center text-justify font-mono md:mb-48 md:text-xl lg:text-2xl'
-				)}
-			>
+			<p class="text-md mb-24 self-center text-justify font-mono md:mb-48 md:text-xl lg:text-2xl">
 				Welcome to my website. I am a software engineer trying to learn how to make great software
 				for all people. In my free time I like to bake and cook, mess with audio equipment,
 				mechanical keyboards, and hobby electronics. If you'd like to say hi, feel free to reach out
@@ -38,6 +35,7 @@
 			<Section title="Get in touch">
 				<div class="mt-12 flex flex-col gap-12">
 					<MediaLinks />
+					<ContactForm />
 				</div>
 			</Section>
 		</div>
