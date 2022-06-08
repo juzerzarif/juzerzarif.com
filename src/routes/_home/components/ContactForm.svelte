@@ -22,17 +22,16 @@
 				requestResult = null;
 				const response = await fetch(form.action, { method: form.method, body: formData });
 				if (!response.ok) {
-					requestResult = { success: false, text: await response.text() };
+					const errorText = (await response.text()) || 'Unknown error occurred';
+					requestResult = { success: false, text: errorText };
 				} else {
 					requestResult = { success: true, text: 'Successfully submitted message!' };
 					form.reset();
 				}
 			} catch (err) {
 				console.error(err);
-				requestResult = {
-					success: false,
-					text: (err instanceof Error && err.message) || 'Unknown error occurred'
-				};
+				const errMessage = (err instanceof Error && err.message) || 'Unknown error occurred';
+				requestResult = { success: false, text: errMessage };
 			} finally {
 				requestPending = false;
 			}
@@ -69,7 +68,14 @@
 			disabled={requestPending}
 			required
 		/>
-		<TextField element="textarea" label="Message" rows="8" disabled={requestPending} required />
+		<TextField
+			element="textarea"
+			name="message"
+			label="Message"
+			rows="8"
+			disabled={requestPending}
+			required
+		/>
 		<div class="inline-flex justify-end">
 			<button
 				class="relative bg-terminal-fg px-6 py-3 font-mono uppercase text-terminal-bg disabled:opacity-70 md:px-8 md:py-4"

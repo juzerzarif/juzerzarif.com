@@ -36,9 +36,10 @@ const injectCsrfToken: Handle = async ({ event, resolve }) => {
 };
 
 const verifyCsrfToken: Handle = async ({ event, resolve }) => {
-	const csrfHash = parseCookie(event.request.headers.get('Cookie') || '')[CSRF_HASH_COOKIE];
-	const csrfHeader = event.request.headers.get(CSRF_TOKEN_HEADER);
-	const csrfFormValue = (await event.request.formData()).get(CSRF_TOKEN_FIELD) as string | null;
+	const request = event.request.clone();
+	const csrfHash = parseCookie(request.headers.get('Cookie') || '')[CSRF_HASH_COOKIE];
+	const csrfHeader = request.headers.get(CSRF_TOKEN_HEADER);
+	const csrfFormValue = (await request.formData()).get(CSRF_TOKEN_FIELD) as string | null;
 	const csrfToken = csrfHeader || csrfFormValue;
 
 	if (csrfHash && csrfToken && csrfHash === generateTokenHash(csrfToken)) {
