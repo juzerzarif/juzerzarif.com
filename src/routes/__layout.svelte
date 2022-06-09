@@ -49,7 +49,9 @@
 		</div>
 
 		<!-- Scroll container -->
-		<div class="flex-grow overflow-auto bg-terminal-bg font-mono text-terminal-fg">
+		<div
+			class="flex flex-grow flex-col justify-between overflow-auto bg-terminal-bg font-mono text-terminal-fg"
+		>
 			<slot />
 			<footer class="mt-8 p-4 text-center text-xs text-terminal-fg/80 md:text-sm">
 				Copyright &copy; {currentYear} Juzer Zarif. All rights reserved.
