@@ -5,12 +5,7 @@
 </script>
 
 <section>
-	<h2
-		class={cx(
-			'section-header',
-			'flex font-mono text-3xl font-bold uppercase md:text-4xl lg:text-5xl'
-		)}
-	>
+	<h2 class={cx('section-header', 'flex text-3xl font-bold uppercase md:text-4xl lg:text-5xl')}>
 		{title}
 	</h2>
 	<slot />

@@ -13,7 +13,7 @@
     this={element}
 		class={cx(
 			'text-field',
-			'w-full border-[3px] bg-transparent py-2 px-3 font-mono transition-all focus:ring-0',
+			'w-full border-[3px] bg-transparent py-2 px-3 transition-all focus:ring-0',
 			$$restProps.class
 		)}
 		aria-label={label}
@@ -24,7 +24,7 @@
 		class="pointer-events-none absolute border-[3px] px-2 transition-all"
 		aria-hidden="true"
 	>
-		<legend class="relative px-1 font-mono transition-all">{label}</legend>
+		<legend class="relative px-1 transition-all">{label}</legend>
 	</fieldset>
 </div>
 

@@ -25,7 +25,7 @@
 	/>
 	<TypedGreeting on:typing-complete={handleTypingComplete} />
 	<div class={cx('delayed-visible', 'transition-opacity')}>
-		<p class="text-md mb-24 self-center text-justify font-mono md:mb-48 md:text-xl lg:text-2xl">
+		<p class="text-md mb-24 self-center text-justify md:mb-48 md:text-xl lg:text-2xl">
 			Welcome to my website. I am a software engineer trying to learn how to make great software for
 			all people. In my free time I like to bake and cook, mess with audio equipment, mechanical
 			keyboards, and hobby electronics. If you'd like to say hi, feel free to reach out to me using

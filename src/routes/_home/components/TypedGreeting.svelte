@@ -3,7 +3,7 @@
 	import Typed from 'typed.js';
 	import { createEventDispatcher, onMount } from 'svelte';
 
-	let introEl: HTMLHeadingElement;
+	let introEl: HTMLSpanElement;
 	let isTyping = false;
 	const dispatch = createEventDispatcher();
 
@@ -31,14 +31,12 @@
 </script>
 
 <h1 class="untyped-greeting">Hi, my name is Juzer 👋</h1>
-<!-- svelte-ignore a11y-hidden -->
-<!-- svelte-ignore a11y-missing-content -->
-<h1
+<span
 	aria-hidden="true"
 	class={cx(
 		'typed-greeting',
 		!isTyping && 'cursor-blink',
-		'relative mb-12 text-center font-mono text-4xl font-bold md:text-5xl lg:text-6xl'
+		'relative mb-12 text-center text-4xl font-bold md:text-5xl lg:text-6xl'
 	)}
 	bind:this={introEl}
 />
@@ -46,7 +44,7 @@
 <style lang="postcss">
 	:global(body[no-js]) {
 		.untyped-greeting {
-			@apply relative mb-12 text-center font-mono text-4xl font-bold md:text-5xl lg:text-6xl;
+			@apply relative mb-12 text-center text-4xl font-bold md:text-5xl lg:text-6xl;
 		}
 
 		.typed-greeting {

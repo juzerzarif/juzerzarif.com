@@ -78,7 +78,7 @@
 		/>
 		<div class="inline-flex justify-end">
 			<button
-				class="relative bg-terminal-fg px-6 py-3 font-mono uppercase text-terminal-bg disabled:opacity-70 md:px-8 md:py-4"
+				class="relative bg-terminal-fg px-6 py-3 uppercase text-terminal-bg disabled:opacity-70 md:px-8 md:py-4"
 				type="submit"
 				disabled={requestPending}
 			>
