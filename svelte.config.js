@@ -10,6 +10,12 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
+		csp: {
+			mode: 'auto',
+			directives: {
+				['script-src']: ['self']
+			}
+		},
 		vite: {
 			plugins: [
 				svg({
