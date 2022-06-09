@@ -30,7 +30,7 @@
 
 <style lang="postcss">
 	.media-anchor {
-		@apply aspect-square h-full;
+		@apply aspect-square h-full transition-all hover:scale-110 focus-visible:scale-110;
 
 		:global(svg) {
 			@apply h-full;
