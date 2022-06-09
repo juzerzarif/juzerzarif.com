@@ -40,14 +40,11 @@
 				<span aria-hidden="true" class="invisible">l</span>
 			</span>
 			<button
-				class={cx(
-					'settings-btn',
-					'absolute right-1.5 aspect-square h-full rounded-full px-1 drop-shadow-xl'
-				)}
+				class={cx('settings-btn', 'absolute right-1.5 h-full rounded-full p-1 drop-shadow-xl')}
 				on:click={handleSettingsToggle}
 				aria-label="Preferences"
 			>
-				<SettingsSvg class="fill-system-fg/80" />
+				<SettingsSvg class="h-full fill-system-fg/80" />
 			</button>
 		</div>
 
