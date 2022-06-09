@@ -15,16 +15,17 @@
 </script>
 
 <div class="flex min-h-full justify-center">
-	<div class="container flex flex-col items-center py-10 px-6 sm:px-10">
+	<div
+		class="container flex flex-col items-center py-10 px-6 sm:px-10"
+		style:--content-opacity={showContent ? 1 : 0}
+	>
 		<img
-			class="mb-8 h-[30vh] rounded-full transition-all md:min-h-[20rem]"
-			class:opacity-0={!showContent}
-			class:opacity-100={showContent}
+			class={cx('delayed-visible', 'mb-8 h-[30vh] rounded-full transition-all md:min-h-[20rem]')}
 			src="images/juzer-seattle.webp"
 			alt="Juzer smiling with the city of seattle in the background"
 		/>
 		<TypedGreeting on:typing-complete={handleTypingComplete} />
-		<div class={cx('transition-opacity', showContent ? 'opacity-100' : 'opacity-0')}>
+		<div class={cx('delayed-visible', 'transition-opacity')}>
 			<p class="text-md mb-24 self-center text-justify font-mono md:mb-48 md:text-xl lg:text-2xl">
 				Welcome to my website. I am a software engineer trying to learn how to make great software
 				for all people. In my free time I like to bake and cook, mess with audio equipment,
@@ -41,3 +42,13 @@
 		</div>
 	</div>
 </div>
+
+<style lang="postcss">
+	:global(body[no-js]) .delayed-visible {
+		opacity: 1;
+	}
+
+	.delayed-visible {
+		opacity: var(--content-opacity, 0);
+	}
+</style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import cx from 'clsx';
 	import SettingsSvg from '@material-design-icons/svg/filled/settings.svg';
 
 	import Modal from '$lib/components/modal';
@@ -39,7 +40,7 @@
 				<span aria-hidden="true" class="invisible">l</span>
 			</span>
 			<button
-				class="absolute right-1.5 aspect-square h-full px-1 drop-shadow-xl"
+				class={cx('settings-btn', 'absolute right-1.5 aspect-square h-full px-1 drop-shadow-xl')}
 				on:click={handleSettingsToggle}
 				aria-label="Preferences"
 			>
@@ -58,12 +59,8 @@
 	<Modal open={settingsModalOpen}><Settings on:close={handleSettingsToggle} /></Modal>
 </div>
 
-<style lang="postcss" global>
-	.dark-mode-switch {
-		@apply absolute right-3 dark:border-terminal-fg;
-
-		[data-switch-track] {
-			@apply bg-transparent;
-		}
+<style lang="postcss">
+	:global(body[no-js]) .settings-btn {
+		display: none;
 	}
 </style>

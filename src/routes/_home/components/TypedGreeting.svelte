@@ -30,7 +30,7 @@
 	});
 </script>
 
-<h1 class="sr-only">Hi, my name is Juzer 👋</h1>
+<h1 class="untyped-greeting">Hi, my name is Juzer 👋</h1>
 <!-- svelte-ignore a11y-hidden -->
 <!-- svelte-ignore a11y-missing-content -->
 <h1
@@ -44,6 +44,20 @@
 />
 
 <style lang="postcss">
+	:global(body[no-js]) {
+		.untyped-greeting {
+			@apply relative mb-12 text-center font-mono text-4xl font-bold md:text-5xl lg:text-6xl;
+		}
+
+		.typed-greeting {
+			display: none;
+		}
+	}
+
+	:global(body:not([no-js])) .untyped-greeting {
+		@apply sr-only;
+	}
+
 	.typed-greeting::before {
 		content: '\200b';
 	}
@@ -52,7 +66,7 @@
 		@apply absolute -bottom-0.5 inline-block scale-y-110 bg-terminal-cursor text-terminal-cursor;
 	}
 
-	@keyframes blink2 {
+	@keyframes blink {
 		25% {
 			opacity: 1;
 		}
@@ -67,6 +81,6 @@
 		}
 	}
 	.cursor-blink::after {
-		animation: blink2 1s infinite;
+		animation: blink 1s infinite;
 	}
 </style>
