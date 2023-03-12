@@ -7,7 +7,7 @@ interface FormspreeError {
 	message: string;
 }
 
-export const post: RequestHandler = async (event) => {
+export const POST: RequestHandler = async (event) => {
 	try {
 		const response = await fetch(import.meta.env.VITE_FORMSPREE_ENDPOINT, {
 			method: 'post',
@@ -15,15 +15,15 @@ export const post: RequestHandler = async (event) => {
 			headers: { Accept: 'application/json' }
 		});
 		if (response.ok) {
-			return { status: 201 };
+			return new Response(undefined, { status: 201 });
 		} else {
 			console.error(response);
 			const responseData = (await response.json()) as { errors?: FormspreeError[] };
 			const errorText = responseData.errors?.map((err) => err.message).join(', ');
-			return { status: response.status, body: Readable.from(errorText || 'Unknown error') };
+			return new Response(Readable.from(errorText || 'Unknown error'), { status: response.status });
 		}
 	} catch (err) {
 		console.error(err);
-		return { status: 500, body: Readable.from('Unknown error') };
+		return new Response(Readable.from('Unknown error'), { status: 500 });
 	}
 };

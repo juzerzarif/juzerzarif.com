@@ -3,9 +3,9 @@
 
 	import SettingsItem from '../shared/SettingsItem.svelte';
 
-	import DarkMode from './darkmode.svg';
-	import LightMode from './lightmode.svg';
-	import System from './system.svg';
+	import DarkMode from '$assets/images/darkmode.svg';
+	import LightMode from '$assets/images/lightmode.svg';
+	import System from '$assets/images/system.svg';
 	import ThemeButton from './ThemeButton.svelte';
 
 	const { userSelection } = getCurrentColorScheme();

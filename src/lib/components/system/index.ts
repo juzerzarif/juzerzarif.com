@@ -1,1 +1,1 @@
-export { default as WindowActionButtons } from './wab/WindowActionButtons.svelte';
+export { default as WindowActionButtons } from './WindowActionButtons.svelte';

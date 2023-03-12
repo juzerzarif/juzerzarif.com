@@ -1,7 +1,7 @@
 import { derived, get, writable, type Writable } from 'svelte/store';
 import { serialize as serializeCookie } from 'cookie';
 
-import { session } from '$app/stores';
+import { page } from '$app/stores';
 
 import { COLOR_CONFIG_COOKIE_KEY } from './constants';
 
@@ -11,7 +11,7 @@ const colorSchemeConfig = {
 };
 
 export function getCurrentColorScheme() {
-	const { colorSchemeConfig: sessionColorScheme, id: sessionId } = get(session);
+	const { colorSchemeConfig: sessionColorScheme, sessionId } = get(page).data;
 	/**
 	 * Recreate store on a new session. The server will see a new session id for each request and the
 	 * client will only ever see one session id.

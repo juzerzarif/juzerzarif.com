@@ -7,10 +7,9 @@
 </script>
 
 <div class={cx('relative inline-flex', disabled && 'opacity-60')}>
-	<!-- prettier-ignore -->
 	<svelte:element
+		this={element}
 		{...$$restProps}
-    this={element}
 		class={cx(
 			'text-field',
 			'w-full border-[3px] bg-transparent py-2 px-3 transition-all focus:ring-0',

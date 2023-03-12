@@ -1,7 +1,7 @@
 <script lang="ts">
-	import FacebookIcon from './facebook.svg';
-	import GithubIcon from './github.svg';
-	import InstagramIcon from './instagram.svg';
+	import FacebookIcon from '$assets/images/facebook.svg';
+	import GithubIcon from '$assets/images/github.svg';
+	import InstagramIcon from '$assets/images/instagram.svg';
 </script>
 
 <div class="flex h-8 w-full justify-center gap-8 md:h-12">

@@ -1,12 +1,12 @@
 const autoprefixer = require('autoprefixer');
-const postcssNested = require('postcss-nested');
 const purgecss = require('@fullhuman/postcss-purgecss');
 const tailwindcss = require('tailwindcss');
+const tailwindcssNesting = require('tailwindcss/nesting');
 
 module.exports = {
 	plugins: [
-		postcssNested,
 		autoprefixer,
+		tailwindcssNesting,
 		tailwindcss,
 		purgecss({
 			content: ['./src/**/*.{html,js,ts,svelte}'],

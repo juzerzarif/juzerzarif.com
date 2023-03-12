@@ -1,20 +1,27 @@
-/// <reference types="@sveltejs/kit" />
-
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
-declare namespace App {
-	type ColorScheme = 'light' | 'dark';
+declare global {
+	namespace App {
+		type ColorScheme = 'light' | 'dark';
 
-	interface ColorSchemeConfig {
-		user?: ColorScheme;
-		system: ColorScheme;
-	}
+		interface ColorSchemeConfig {
+			user?: ColorScheme;
+			system: ColorScheme;
+		}
 
-	// interface Locals {}
-	// interface Platform {}
-	interface Session {
-		id: string;
-		colorSchemeConfig: ColorSchemeConfig;
+		// interface Error {}
+
+		interface Locals {
+			sessionId: string;
+		}
+
+		interface PageData {
+			sessionId: string;
+			colorSchemeConfig: ColorSchemeConfig;
+		}
+
+		// interface Platform {}
 	}
-	// interface Stuff {}
 }
+
+export {};

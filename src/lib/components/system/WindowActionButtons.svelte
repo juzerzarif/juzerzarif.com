@@ -2,9 +2,9 @@
 	import cx from 'clsx';
 	import { createEventDispatcher } from 'svelte';
 
-	import CloseIcon from './close.svg';
-	import MinimizeIcon from './minimize.svg';
-	import MaximizeIcon from './maximize.svg';
+	import CloseIcon from '$assets/images/close.svg';
+	import MinimizeIcon from '$assets/images/minimize.svg';
+	import MaximizeIcon from '$assets/images/maximize.svg';
 
 	export let disabled: Partial<Record<'close' | 'maximize' | 'minimize', boolean>> = {};
 

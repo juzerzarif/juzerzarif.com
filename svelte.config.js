@@ -1,35 +1,26 @@
 import adapter from '@sveltejs/adapter-auto';
-import preprocess from 'svelte-preprocess';
-import svg from '@poppanator/sveltekit-svg';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://github.com/sveltejs/svelte-preprocess
-	// for more information about preprocessors
-	preprocess: preprocess({ postcss: true }),
+	preprocess: vitePreprocess({}),
 
 	kit: {
 		adapter: adapter(),
+		alias: {
+			'$assets': 'src/assets'
+		},
 		csp: {
 			mode: 'auto',
 			directives: {
 				['script-src']: ['self']
 			}
 		},
-		vite: {
-			plugins: [
-				svg({
-					svgoOptions: {
-						plugins: [
-							{
-								name: 'preset-default',
-								params: { overrides: { removeViewBox: false } }
-							},
-							'removeDimensions'
-						]
-					}
-				})
-			]
+		typescript: {
+			config: (tsConfig) => ({
+				...tsConfig,
+				include: ['../src/vite-env-override.d.ts', ...tsConfig.include]
+			})
 		}
 	}
 };
