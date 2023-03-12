@@ -53,8 +53,13 @@
 			class="flex flex-grow flex-col justify-between overflow-auto bg-terminal-bg font-mono text-terminal-fg"
 		>
 			<slot />
-			<footer class="mt-8 p-4 text-center text-xs text-terminal-fg/80 md:text-sm">
-				Copyright &copy; {currentYear} Juzer Zarif. All rights reserved.
+			<footer class="mt-8 p-4 pb-8 text-center text-xs text-terminal-fg/80 md:text-sm">
+				<div>Copyright &copy; {currentYear} Juzer Zarif. All rights reserved.</div>
+				<div>
+					This site is protected by reCAPTCHA and the Google
+					<a href="https://policies.google.com/privacy">Privacy Policy</a> and
+					<a href="https://policies.google.com/terms">Terms of Service</a> apply.
+				</div>
 			</footer>
 		</div>
 	</div>

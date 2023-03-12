@@ -87,13 +87,6 @@
 			disabled={requestPending}
 			required
 		/>
-
-		<span class="recaptcha-notice text-xs md:text-sm">
-			This site is protected by reCAPTCHA and the Google
-			<a href="https://policies.google.com/privacy">Privacy Policy</a> and
-			<a href="https://policies.google.com/terms">Terms of Service</a> apply.
-		</span>
-
 		<div class="inline-flex justify-end">
 			<button
 				class="relative bg-terminal-fg px-6 py-3 uppercase text-terminal-bg disabled:opacity-70 md:px-8 md:py-4"
@@ -131,9 +124,5 @@
 
 	.waiting-dot {
 		animation: bounce 2s ease-in-out var(--dot-delay, 0ms) infinite;
-	}
-
-	.recaptcha-notice a {
-		@apply text-terminal-cyan underline;
 	}
 </style>

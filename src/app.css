@@ -19,6 +19,10 @@ button:not(:disabled):active {
 	opacity: 0.7;
 }
 
+a {
+	@apply text-terminal-cyan underline;
+}
+
 a:active {
 	opacity: 0.7;
 }
