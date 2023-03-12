@@ -2,7 +2,6 @@
 	import cx from 'clsx';
 	import CloseSvg from '@material-design-icons/svg/filled/close.svg';
 
-	import fetch from '$lib/fetch';
 	import TextField from '$lib/components/form/TextField.svelte';
 
 	let requestPending = false;

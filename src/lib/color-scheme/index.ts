@@ -1,3 +1,3 @@
-export * from './color-scheme-session';
-export * from './color-scheme-store';
+export * from './load';
+export * from './store';
 export * from './color-vars';

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import cx from 'clsx';
 
-	import ContactForm from './components/ContactForm.svelte';
-	import MediaLinks from './components/MediaLinks.svelte';
-	import Section from './components/Section.svelte';
-	import TypedGreeting from './components/TypedGreeting.svelte';
+	import ContactForm from './ContactForm.svelte';
+	import MediaLinks from './MediaLinks.svelte';
+	import Section from './Section.svelte';
+	import TypedGreeting from './TypedGreeting.svelte';
 
 	let showContent = false;
 	const handleTypingComplete = () => {
@@ -13,6 +13,14 @@
 		}, 300);
 	};
 </script>
+
+<svelte:head>
+	<title>Juzer Zarif</title>
+	<meta
+		name="description"
+		content="Juzer Zarif is a software engineer focused on web development. Contact him on his website."
+	/>
+</svelte:head>
 
 <div
 	class="container mx-auto flex flex-col items-center py-10 px-6 sm:px-10"
