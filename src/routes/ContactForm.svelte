@@ -1,8 +1,16 @@
 <script lang="ts">
 	import cx from 'clsx';
 	import CloseSvg from '@material-design-icons/svg/filled/close.svg';
+	import { load, ReCaptchaInstance } from 'recaptcha-v3';
+	import { onMount } from 'svelte';
 
 	import TextField from '$lib/components/form/TextField.svelte';
+	import { PUBLIC_GRECAPTCHA_SITE_KEY } from '$env/static/public';
+
+	let recaptchaApi = null as unknown as Promise<ReCaptchaInstance>;
+	onMount(() => {
+		recaptchaApi = load(PUBLIC_GRECAPTCHA_SITE_KEY, { autoHideBadge: true });
+	});
 
 	let requestPending = false;
 	let requestResult = null as { success: boolean; text: string } | null;
@@ -11,34 +19,33 @@
 		requestResult = null;
 	};
 
-	const enhanceForm = (form: HTMLFormElement) => {
-		const submitHandler = async (event: SubmitEvent) => {
-			event.preventDefault();
-			const formData = new FormData(form);
+	async function handleFormSubmit(event: SubmitEvent) {
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
 
-			try {
-				requestPending = true;
-				requestResult = null;
-				const response = await fetch(form.action, { method: form.method, body: formData });
-				if (!response.ok) {
-					const errorText = (await response.text()) || 'Unknown error occurred';
-					requestResult = { success: false, text: errorText };
-				} else {
-					requestResult = { success: true, text: 'Successfully submitted message!' };
-					form.reset();
-				}
-			} catch (err) {
-				console.error(err);
-				const errMessage = (err instanceof Error && err.message) || 'Unknown error occurred';
-				requestResult = { success: false, text: errMessage };
-			} finally {
-				requestPending = false;
+		try {
+			requestPending = true;
+			requestResult = null;
+
+			const gRecaptchaResponse = await recaptchaApi.then((r) => r.execute('contactFormSubmit'));
+			formData.append('g-recaptcha-response', gRecaptchaResponse);
+
+			const response = await fetch(form.action, { method: form.method, body: formData });
+			if (!response.ok) {
+				const errorText = (await response.text()) || 'Unknown error occurred';
+				requestResult = { success: false, text: errorText };
+			} else {
+				requestResult = { success: true, text: 'Successfully submitted message!' };
+				form.reset();
 			}
-		};
-
-		form.addEventListener('submit', submitHandler);
-		return { destroy: () => form.removeEventListener('submit', submitHandler) };
-	};
+		} catch (err) {
+			console.error(err);
+			const errMessage = (err instanceof Error && err.message) || 'Unknown error occurred';
+			requestResult = { success: false, text: errMessage };
+		} finally {
+			requestPending = false;
+		}
+	}
 </script>
 
 <div class={cx('mx-auto w-full max-w-2xl transition-all')}>
@@ -57,7 +64,12 @@
 		</div>
 	{/if}
 
-	<form class="flex flex-col gap-6 text-lg" action="/contact-me" method="post" use:enhanceForm>
+	<form
+		class="flex flex-col gap-6 text-lg"
+		action="/contact-me"
+		method="post"
+		on:submit|preventDefault={handleFormSubmit}
+	>
 		<TextField label="Name" name="name" disabled={requestPending} required />
 		<TextField
 			label="Email"
@@ -75,6 +87,13 @@
 			disabled={requestPending}
 			required
 		/>
+
+		<span class="recaptcha-notice text-xs md:text-sm">
+			This site is protected by reCAPTCHA and the Google
+			<a href="https://policies.google.com/privacy">Privacy Policy</a> and
+			<a href="https://policies.google.com/terms">Terms of Service</a> apply.
+		</span>
+
 		<div class="inline-flex justify-end">
 			<button
 				class="relative bg-terminal-fg px-6 py-3 uppercase text-terminal-bg disabled:opacity-70 md:px-8 md:py-4"
@@ -112,5 +131,9 @@
 
 	.waiting-dot {
 		animation: bounce 2s ease-in-out var(--dot-delay, 0ms) infinite;
+	}
+
+	.recaptcha-notice a {
+		@apply text-terminal-cyan underline;
 	}
 </style>

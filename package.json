@@ -47,6 +47,7 @@
 		"crypto-js": "^4.1.1",
 		"focus-trap": "^7.4.0",
 		"nanoid": "^4.0.1",
+		"recaptcha-v3": "^1.10.0",
 		"typed.js": "^2.0.12"
 	}
 }

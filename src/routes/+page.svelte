@@ -1,10 +1,17 @@
 <script lang="ts">
 	import cx from 'clsx';
+	import { onMount } from 'svelte';
 
 	import ContactForm from './ContactForm.svelte';
 	import MediaLinks from './MediaLinks.svelte';
 	import Section from './Section.svelte';
 	import TypedGreeting from './TypedGreeting.svelte';
+
+	// Assume JS is disabled on the server
+	let jsEnabled = false;
+	onMount(() => {
+		jsEnabled = true;
+	});
 
 	let showContent = false;
 	const handleTypingComplete = () => {
@@ -43,7 +50,7 @@
 		<Section title="Get in touch">
 			<div class="mt-12 flex flex-col gap-12">
 				<MediaLinks />
-				<ContactForm />
+				{#if jsEnabled} <ContactForm /> {/if}
 			</div>
 		</Section>
 	</div>
